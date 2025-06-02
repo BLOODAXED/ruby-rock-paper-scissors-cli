@@ -84,7 +84,7 @@ class Game
     #computer will play a random throw
     def draw_play(p)
         c = rand(3)
-        case p
+        case c
         when 0
             score(p,"r")
         when 1
@@ -98,7 +98,7 @@ class Game
     #If you lost the last round: play the thing that didn’t come up
     #these end up being the same play either way, so we only need one function for both wins and losses
     def non_draw(p)
-        if @randomness < rand(100)
+        if @randomness <= rand(100)
             draw_play(p)
         else
             if @prev_throw == "r"
