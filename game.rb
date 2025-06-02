@@ -60,6 +60,7 @@ class Game
             if play.downcase.include?(VALID)
                 if play == "quit"
                     return
+                end
                 get_cpu_play(play.downcase)
             else
                 puts "Bad input. Please try again"
