@@ -58,7 +58,7 @@ class Game
         loop do
             puts "Throw a hand"
             play = gets.chomp
-            if play.downcase.include?(VALID)
+            if VALID.include?(play.downcase)
                 if play == "quit"
                     return
                 end
@@ -112,9 +112,9 @@ class Game
     end
 
     def cpu_cheat(p_throw)
-        if p_throw.include?(ROCK)
+        if ROCK.include?(p_throw)
             score(p_throw,"p")
-        elsif p_throw.include?(PAPER)
+        elsif PAPER.include?(p_throw)
             score(p_throw,"s")
         else
             score(p_throw,"r")
