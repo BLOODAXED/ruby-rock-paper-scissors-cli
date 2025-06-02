@@ -135,8 +135,20 @@ class Game
         end
     end
 
+    def convert_letter_to_name(letter)
+        case letter.downcase[0]
+        when "r"
+            return "rock"
+        when "p"
+            return "paper"
+        when "s"
+            return "scissors"
+        end
+    end
+
     def score(p_throw,c_throw)
         @prev_throw = c_throw
+        puts "I throw #{convert_letter_to_name(c_throw)}"
         p_throw = p_throw[0] #i'm lazy and just want to look at single letter inputs
         if p_throw == c_throw
             return 3
