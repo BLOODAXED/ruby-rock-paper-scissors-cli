@@ -25,6 +25,7 @@ class Game
     def setup_game
         puts "What is your name?"
         @player = gets.chomp
+        puts ""
         puts "Hello, #{@player}, how random do you want the bot to be?"
         puts "Enter a number from 0-100. It defaults to 5%"
         set_randomness
@@ -32,6 +33,7 @@ class Game
 
     def set_randomness
         r = gets.chomp
+        puts ""
         loop do
             if r =~ /\d\d?\d?|\-1/ 
                 if r.to_i > 0 && r.to_i <= 100
@@ -45,6 +47,7 @@ class Game
             else
                 puts "Invalid input, please enter a number from 0-100"
                 r = gets.chomp
+                puts ""
             end
         end
     end
@@ -53,13 +56,14 @@ class Game
         puts "In \"Rock, Paper, Scissors\" rock beats scissors, paper beats rock, and scissors beats paper"
         puts "You will input either \"rock\", \"paper\", or \"scissors\" or the first letter of each of them to \'throw your play\""
         puts "The computer will then respond based on the current gameplay and it's randomness that you put in earlier"
-        puts "At any time, you can type \"quit\" to exit"
+        puts "At any time, you can type \"quit\" to exit\n"
     end
 
     def game_loop
         loop do
-            puts "Throw a hand"
+            puts "#{@player}, Throw a hand"
             play = gets.chomp
+            puts ""
             if VALID.include?(play.downcase)
                 if play == "quit"
                     return
@@ -164,7 +168,7 @@ class Game
         @wins = @wins+1
         puts "YOU WIN!"
         puts "Wins: #{@wins}"
-        puts "Losses: #{@losses}"
+        puts "Losses: #{@losses}\n"
     end
 
     def lose
@@ -172,16 +176,16 @@ class Game
         @losses = @losses+1
         puts "You lose"
         puts "Wins: #{@wins}"
-        puts "Losses: #{@losses}"
+        puts "Losses: #{@losses}\n"
     end
 
     def drawed
-        puts "DRAW! No Score Change!"
+        puts "DRAW! No Score Change!\n"
             @prev_result = 0
     end
 
     def goodbye
-        puts "Good Game. You won #{@wins} times and lost #{@losses} times"
+        puts "Good Game, #{@player}. You won #{@wins} times and lost #{@losses} times"
     end
 
 end
