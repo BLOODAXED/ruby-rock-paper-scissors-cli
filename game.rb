@@ -24,25 +24,26 @@ class Game
 
     def setup_game
         puts "What is your name?"
-        @player = gets
+        @player = gets.chomp
         puts "Hello, #{@player}, how random do you want the bot to be?"
         puts "Enter a number from 0-100. It defaults to 5%"
         set_randomness
     end
 
     def set_randomness
-        r = gets
+        r = gets.chomp
         loop do
-        if r =~ /[0-100]/
-            @randomness = r.to_i
-            return
-        elsif r.to_i < 0
-            @randomness = -1
-            puts ";)" #easter egg for cheat mode
-            return
-        else
-            puts "Invalid input, please enter a number from 0-100"
-            r = gets
+            if r =~ /[0-100]/ && r.to_i > 0
+                @randomness = r.to_i
+                return
+            elsif r =~ /[0-100]/ && r.to_i < 0
+                @randomness = -1
+                puts ";)" #easter egg for cheat mode
+                return
+            else
+                puts "Invalid input, please enter a number from 0-100"
+                r = gets.chomp
+            end
         end
     end
 
@@ -56,7 +57,7 @@ class Game
     def game_loop
         loop do
             puts "Throw a hand"
-            play = gets
+            play = gets.chomp
             if play.downcase.include?(VALID)
                 if play == "quit"
                     return
@@ -69,7 +70,7 @@ class Game
     end
 
     def get_cpu_play(p_throw)
-        if @randomness = -1
+        if @randomness == -1
             cpu_cheat(p_throw)
         else
             if prev_result == 0
