@@ -33,13 +33,15 @@ class Game
     def set_randomness
         r = gets.chomp
         loop do
-            if r =~ /[0-100]/ && r.to_i > 0
-                @randomness = r.to_i
-                return
-            elsif r =~ /[0-100]/ && r.to_i < 0
-                @randomness = -1
-                puts ";)" #easter egg for cheat mode
-                return
+            if r =~ /\d\d?\d?|\-1/ 
+                if r.to_i > 0 && r.to_i <= 100
+                    @randomness = r.to_i
+                    return
+                elsif r =~ /[0-100]/ && r.to_i < 0
+                    @randomness = -1
+                    puts ";)" #easter egg for cheat mode
+                    return
+                end
             else
                 puts "Invalid input, please enter a number from 0-100"
                 r = gets.chomp
@@ -62,7 +64,15 @@ class Game
                 if play == "quit"
                     return
                 end
-                get_cpu_play(play.downcase)
+                result = get_cpu_play(play.downcase)
+                case result
+                when 0
+                    win()
+                when 1
+                    lose()
+                when 3
+                    drawed()
+                end
             else
                 puts "Bad input. Please try again"
             end
@@ -125,26 +135,24 @@ class Game
         @prev_throw = c_throw
         p_throw = p_throw[0] #i'm lazy and just want to look at single letter inputs
         if p_throw == c_throw
-            puts "DRAW! No Score Change!"
-            @prev_result = 0
-            return
+            return 3
         elsif p_throw == "r"
             if c_throw == "s"
-                win()
+                return 0
             else
-                lose()
+                return 1
             end
         elsif p_throw == "p"
             if c_throw == "r"
-                win()
+                return 0
             else
-                lose()
+                return 1
             end
         elsif p_throw == "s"
             if c_throw == "p"
-                win()
+                return 0
             else
-                lose()
+                return 1
             end
         else #in case we get here without p_throw being valid
             puts "bad input"
@@ -165,6 +173,11 @@ class Game
         puts "You lose"
         puts "Wins: #{@wins}"
         puts "Losses: #{@losses}"
+    end
+
+    def drawed
+        puts "DRAW! No Score Change!"
+            @prev_result = 0
     end
 
     def goodbye
