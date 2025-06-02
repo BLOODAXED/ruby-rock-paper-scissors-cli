@@ -105,7 +105,7 @@ class Game
             else
                 score(p,"p")
             end
-
+        end
     end
 
     def cpu_cheat(p_throw)
