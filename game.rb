@@ -1,4 +1,4 @@
-class GAME
+class Game
     ROCK = ["rock", "r"]
     PAPER = ["paper", "p"]
     SCISSORS = ["scissors","s"]
