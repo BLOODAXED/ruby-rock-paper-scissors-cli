@@ -2,6 +2,7 @@ class GAME
     ROCK = ["rock", "r"]
     PAPER = ["paper", "p"]
     SCISSORS = ["scissors","s"]
+    VALID_COMMANDS = ["rock", "r","paper", "p","scissors","s","quit"]
     
     attr_accessor :player, :wins, :losses, :randomness
 
@@ -14,6 +15,7 @@ class GAME
 
     def start
         setup_game
+        instructions
         game_loop
         goodbye
     end
@@ -34,20 +36,30 @@ class GAME
             return
         elsif r.to_i < 0
             @randomness = -1
+            puts ";)"
+            return
         else
             puts "Invalid input, please enter a number from 0-100"
             r = gets
         end
     end
 
+    def instructions
+        puts "In \"Rock, Paper, Scissors\" rock beats scissors, paper beats rock, and scissors beats paper"
+        puts "You will input either \"rock\", \"paper\", or \"scissors\" or the first letter of each of them to \'throw your play\""
+        puts "The computer will then respond based on the current gameplay and it's randomness that you put in earlier"
+        puts "At any time, you can type \"quit\" to exit"
+    end
+
     def game_loop
         loop do
+            puts "Throw a hand"
 
         end
     end
 
     def goodbye
-        puts "Good Game"
+        puts "Good Game. You won #{@wins} times and lost #{@losses} times"
     end
 
 end
