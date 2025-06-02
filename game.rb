@@ -63,6 +63,7 @@ class Game
                 get_cpu_play(play.downcase)
             else
                 puts "Bad input. Please try again"
+            end
         end
     end
 
